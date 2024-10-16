@@ -1,8 +1,12 @@
 <div class="container">
   <h1 class="title">ConvExt</h1>
+  <p class="description">
+    A powerful file converter <br>
+    Convert your files to any format you want without any hassle!<br><br>
+    <i>Supports images, videos, audio files, documents, and more!</i><br><br><br><br>
+  </p>
 
   <div class="drop">
-    <p>Choose files to convert!</p>
-    <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
+    <input type="file" id="fileElem" multiple accept="*" onchange="handleFiles(this.files)" title="Select files to convert">
   </div>
 </div>

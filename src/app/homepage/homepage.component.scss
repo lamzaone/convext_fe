@@ -13,6 +13,12 @@
   color: var(--primary-color)
 }
 
+.description{
+  text-align: center;
+  color: #ffffff77
+
+}
+
 .drop{
   display: flex;
   flex-direction: column;
@@ -24,5 +30,11 @@
 
   & p{
     margin-bottom: 4rem;
+  }
+
+  & input{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
   }
 }
