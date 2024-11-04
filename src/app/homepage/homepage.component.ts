@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
+  standalone: true,
   styleUrls: ['./homepage.component.scss'],
+  imports: [HttpClientModule]
 })
 export class HomepageComponent {
   selectedFiles: FileList | null = null; // Class-level variable to hold selected files
