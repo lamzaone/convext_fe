@@ -23,7 +23,8 @@ export class HomepageComponent {
     if (this.selectedFiles) {
       const formData = new FormData();
       for (let i = 0; i < this.selectedFiles.length; i++) {
-        formData.append('files', this.selectedFiles[i]);
+        formData.append('files', this.selectedFiles[i]);          // FILE DATA
+        formData.append('extensions', 'txt')                      // EXTENSION TO CONVERT INTO
       }
 
       try {
