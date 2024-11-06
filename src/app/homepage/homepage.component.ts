@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import axios from 'axios';
+import { response } from 'express';
 
 @Component({
   selector: 'app-homepage',
@@ -23,8 +24,10 @@ export class HomepageComponent {
     if (this.selectedFiles) {
       const formData = new FormData();
       for (let i = 0; i < this.selectedFiles.length; i++) {
+        console.log(this.selectedFiles[i]);                       // FILE OBJECT
         formData.append('files', this.selectedFiles[i]);          // FILE DATA
-        formData.append('extensions', 'txt')                      // EXTENSION TO CONVERT INTO
+        let ext = this.selectedFiles[i].name.split('.').pop();    // FILE EXTENSION
+        formData.append('extensions', ext!)                       // EXTENSION TO CONVERT INTO
       }
 
       try {
@@ -34,9 +37,14 @@ export class HomepageComponent {
           }
         });
         console.log('Upload successful', response.data);
+
+        if (response.status == 200){
+          alert('File uploaded successfully');
+        }
       } catch (error) {
         console.error('Upload failed', error);
       }
+
     } else {
       console.warn('No files selected for upload');
     }
