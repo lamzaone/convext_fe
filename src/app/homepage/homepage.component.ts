@@ -1,43 +1,41 @@
 import { Component } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-
+import axios from 'axios';
 
 @Component({
   selector: 'app-homepage',
   templateUrl: './homepage.component.html',
   standalone: true,
-  styleUrls: ['./homepage.component.scss'],
-  imports: [HttpClientModule]
+  styleUrls: ['./homepage.component.scss']
 })
 export class HomepageComponent {
-  selectedFiles: FileList | null = null; // Class-level variable to hold selected files
-
-  constructor(private http: HttpClient) {}
+  selectedFiles: FileList | null = null;
 
   onFileSelect(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files) {
       this.selectedFiles = input.files;
     } else {
-      this.selectedFiles = null; // Handle the case when no files are selected
+      this.selectedFiles = null;
     }
   }
 
-  uploadFiles() {
+  async uploadFiles() {
     if (this.selectedFiles) {
       const formData = new FormData();
       for (let i = 0; i < this.selectedFiles.length; i++) {
         formData.append('files', this.selectedFiles[i]);
       }
 
-      this.http.post('http://localhost:3000/upload', formData).subscribe(
-        response => {
-          console.log('Upload successful', response);
-        },
-        error => {
-          console.error('Upload failed', error);
-        }
-      );
+      try {
+        const response = await axios.post('http://localhost:8000/upload', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        });
+        console.log('Upload successful', response.data);
+      } catch (error) {
+        console.error('Upload failed', error);
+      }
     } else {
       console.warn('No files selected for upload');
     }
