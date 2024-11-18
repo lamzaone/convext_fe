@@ -1,15 +1,43 @@
 <div class="container">
+  <img src="assets/logo.png" alt="ConvExt Logo" class="logo" height="100px"/>
   <h1 class="title">ConvExt</h1>
   <p class="description">
-    A powerful file converter <br>
+    A powerful file converter <br />
     Convert your files to any format you want without any hassle!
-    <br><br>
+    <br /><br />
     <i>Supports images, videos, audio files, documents, and more!</i>
-    <br><br><br><br>
+    <br /><br /><br /><br />
   </p>
 
   <div class="drop">
-    <input type="file" id="fileElem" multiple accept="*" (change)="onFileSelect($event)" title="Select files to convert">
-    <button id="Submit" (click)="uploadFiles()">Convert</button>
+    <input
+      type="file"
+      id="fileElem"
+      multiple
+      accept="*"
+      (change)="onFileSelect($event)"
+      title="Select files to convert"
+    />
+    <ul class="file-list" *ngIf="selectedFiles.length > 0">
+      <li *ngFor="let file of selectedFiles; let i = index">
+        <span>{{ file.file.name }}</span>
+        <select [(ngModel)]="file.selectedExtension" class="dropdown">
+          <option *ngFor="let option of getExtensionOptions(file.file.name)" [value]="option">
+            {{ option }}
+          </option>
+        </select>
+
+        <div *ngIf="file.uploadProgress > 0" class="progress">
+          <div class="progress-bar" [style.width.%]="file.uploadProgress"></div>
+        </div>
+
+        <!-- File preview (Image or Video)
+        <div *ngIf="isPreviewAvailable(file)">
+          <img *ngIf="isImage(file)" [src]="file.file" alt="Image preview" width="100px" />
+          <video *ngIf="isVideo(file)" [src]="file.file" controls width="100px"></video>
+        </div> -->
+      </li>
+    </ul>
+    <button id="submit" (click)="uploadFiles()">Upload Files</button>
   </div>
 </div>

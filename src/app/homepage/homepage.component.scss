@@ -1,25 +1,23 @@
-.container{
-  display:flex;
+.container {
+  display: flex;
   flex-direction: column;
-  height:100vh;
-  width:100vw;
+  height: 100vh;
+  width: 100vw;
   background-color: rgb(31, 31, 31);
   justify-content: center;
   align-items: center;
 }
 
-
-.title{
-  color: var(--primary-color)
+.title {
+  color: var(--primary-color);
 }
 
-.description{
+.description {
   text-align: center;
-  color: #ffffff77
-
+  color: #ffffff77;
 }
 
-.drop{
+.drop {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -28,15 +26,61 @@
   color: var(--light-color);
   border: 2px dashed var(--primary-color);
 
-  & p{
-    margin-bottom: 4rem;
+  & input[type="file"] {
+    margin-bottom: 1rem;
   }
 
-  & input {
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+  & .file-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1rem;
 
+    & li {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      margin: 0.5rem 0;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    & .dropdown {
+      background-color: #444;
+      color: white;
+      padding: 0.3rem;
+      margin: 0.5rem 0;
+      border-radius: 5px;
+    }
+
+    & .progress {
+      width: 100%;
+      background-color: #ddd;
+      border-radius: 5px;
+      height: 10px;
+      margin-top: 5px;
+
+      .progress-bar {
+        height: 100%;
+        background-color: var(--primary-color);
+        border-radius: 5px;
+      }
+    }
   }
 
+  & button {
+    background-color: var(--primary-color);
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: var(--primary-color);
+    }
+  }
 }
