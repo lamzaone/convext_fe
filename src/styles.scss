@@ -1,6 +1,8 @@
 :root{
-  --primary-color: #007bff;
+  --primary-color: #c75000;
+  --primary-color-dark: #913a00;
   --secondary-color: #6c757d;
+  --secondary-color-dark: #444a50;
   --success-color: #28a745;
   --info-color: #17a2b8;
   --warning-color: #ffc107;
@@ -14,10 +16,11 @@
 }
 
 body{
+  overflow: hidden;
   display: flex;
   margin: 0;
   padding: 0;
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   font-family:Georgia, 'Times New Roman', Times, serif
 }
