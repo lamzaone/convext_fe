@@ -35,7 +35,7 @@ export class HomepageComponent {
     if (ext && extensionMap[`.${ext}`]) {
       return extensionMap[`.${ext}`];
     } else {
-      return [];
+      return ['UNSUPPORTED'];
     }
   }
 
@@ -51,20 +51,6 @@ export class HomepageComponent {
     }
   }
 
-  // Function to check if the file is an image
-  isImage(file: FileUpload): boolean {
-    return file.file.type.startsWith('image/');
-  }
-
-  // Function to check if the file is a video
-  isVideo(file: FileUpload): boolean {
-    return file.file.type.startsWith('video/');
-  }
-
-  // Function to check if the preview is available for the file
-  isPreviewAvailable(file: FileUpload): boolean {
-    return this.isImage(file) || this.isVideo(file);
-  }
 
   // Function to handle file upload
   async uploadFiles() {
@@ -73,6 +59,14 @@ export class HomepageComponent {
 
       // Append files and extensions to the FormData
       this.selectedFiles.forEach((file) => {
+
+        // Handle unsupported file extensions
+        // TODO: do this better
+        if(file.selectedExtension === 'UNSUPPORTED'){
+          alert('Unsupported file (' + file.file.name + ')');
+          this.removeFile(this.selectedFiles.indexOf(file));
+          return;
+        }
         const fileBlob = file.file as Blob;
         formData.append('files', fileBlob);
         // const ext = file.file.name.split('.').pop() || '';
@@ -81,10 +75,16 @@ export class HomepageComponent {
       });
 
       try {
+        // Remove all "remove-button" elements
+        const removeButtons = document.querySelectorAll('.remove-button');
+        removeButtons.forEach((button) => {
+          button.remove();
+        });
         const response = await axios.post('http://localhost:8000/upload', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           },
+          responseType: 'blob', // Set response type to blob
           onUploadProgress: (progressEvent: AxiosProgressEvent) => {
             if (progressEvent.total) {
               const progress = Math.round((progressEvent.loaded * 100) / progressEvent.total);
@@ -95,10 +95,32 @@ export class HomepageComponent {
             }
           }
         });
+        if (response.status == 200){
 
-        console.log('Upload successful', response.data);
-        if (response.status === 200) {
-          alert('Files uploaded successfully');
+
+          alert('File uploaded successfully');
+
+          // Get filename from header
+          const headerLine = response.headers['content-disposition'];
+          const startFileNameIndex = headerLine.indexOf('"') + 1
+          const endFileNameIndex = headerLine.lastIndexOf('"');
+          const filename = headerLine.substring(startFileNameIndex, endFileNameIndex);
+
+          // Convert response data to Blob and make a download link with filename
+          const blob = new Blob([response.data], { type: response.headers['content-type'] });
+          const href = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = href;
+          link.setAttribute('download', filename);
+          document.body.appendChild(link);
+          link.click();
+
+
+
+
+          // Cleanup link and remove URL object
+          document.body.removeChild(link);
+          URL.revokeObjectURL(href);
         }
       } catch (error) {
         console.error('Upload failed', error);
@@ -106,5 +128,16 @@ export class HomepageComponent {
     } else {
       console.warn('No files selected for upload');
     }
+
+
+
+  }
+
+  removeFile(index: number) {
+    this.selectedFiles.splice(index, 1);
+  }
+
+  removeFiles(){
+    this.selectedFiles.splice(0, this.selectedFiles.length);
   }
 }

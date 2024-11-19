@@ -1,11 +1,18 @@
 .container {
+  padding: 5vh 0;
   display: flex;
   flex-direction: column;
   height: 100vh;
   width: 100vw;
   background-color: rgb(31, 31, 31);
-  justify-content: center;
+  // justify-content: center;
   align-items: center;
+  overflow: scroll;
+  box-sizing: border-box;
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
 }
 
 .title {
@@ -45,6 +52,7 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
+      gap: 10px;
     }
 
     & .dropdown {
@@ -80,7 +88,7 @@
     transition: background-color 0.3s;
 
     &:hover {
-      background-color: var(--primary-color);
+      background-color: var(--primary-color-dark);
     }
   }
 }
