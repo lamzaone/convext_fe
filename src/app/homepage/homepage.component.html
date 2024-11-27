@@ -1,3 +1,25 @@
+<div class="header">
+
+  <!-- USER LOGIN -->
+    @if (!currentUser()){
+      <div class="user-login">
+        <p>Log in with Google</p>
+      </div>
+    } @else {
+      <!-- User info -->
+      <div class="user-info">
+        <!-- <img src="{{currentUser().photoURL}}" alt="User profile picture" class="profile-picture" /> -->
+        <p>Welcome, {{currentUser().displayName}}</p>
+      </div>
+
+      <!-- Log out button -->
+      <div class="user-logout">
+        <p>Log out</p>
+      </div>
+    }
+</div>
+
+
 <div class="container">
   <img src="assets/logo.png" alt="ConvExt Logo" class="logo" height="100px"/>
   <h1 class="title">ConvExt</h1>

@@ -1,24 +1,21 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import axios from 'axios';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServiceService {
-  currentUser: {} | null = null;
+  currentUser = signal<any>(null);
 
+  // DUMMY USER DATA //
 
-
+  user={
+    displayName: "Guest",
+    email: "guest@localhost",
+  }
   constructor() {
-    this.initialize();
+    this.currentUser.set(this.user);
   }
 
-  // TODO: Continue this implementation
-  async initialize() {
-    if (localStorage.getItem('token')) {
-      let token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:8000/google-auth/', { headers: { Authorization: `Bearer ${token}` } });
-    }
-  }
 }
 
