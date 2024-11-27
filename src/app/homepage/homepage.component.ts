@@ -147,4 +147,11 @@ export class HomepageComponent {
   removeFiles(){
     this.selectedFiles.splice(0, this.selectedFiles.length);
   }
+
+  logout(){
+    this.authService.currentUser.set(null);
+    console.log(this.authService.currentUser())
+  }
+
+
 }
