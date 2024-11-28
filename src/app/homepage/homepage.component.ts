@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import axios, { AxiosProgressEvent } from 'axios';
 import { FormsModule } from '@angular/forms';
+import { AuthServiceService } from '../services/auth-service.service';
 
 interface FileUpload {
   file: File;
@@ -18,6 +19,12 @@ interface FileUpload {
 })
 export class HomepageComponent {
   selectedFiles: FileUpload[] = [];
+  currentUser: any;
+  constructor(private authService: AuthServiceService) { }
+  ngOnInit() {
+    this.currentUser = this.authService.userData;
+  }
+
 
   // Function to get extension options based on file name
   getExtensionOptions(fileName: string): string[] {
@@ -140,4 +147,13 @@ export class HomepageComponent {
   removeFiles(){
     this.selectedFiles.splice(0, this.selectedFiles.length);
   }
+
+  logout(){
+    this.authService.logout();
+  }
+
+  loginWithGoogle(){
+    this.authService.loginWithGoogle();
+  }
+
 }
