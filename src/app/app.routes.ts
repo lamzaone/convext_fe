@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomepageComponent } from './homepage/homepage.component';
+import { AuthComponent } from './homepage/auth/auth.component';
 
 export const routes: Routes = [
   // { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -11,10 +12,11 @@ export const routes: Routes = [
     path: '',
     component: HomepageComponent
   },
-  { path: '**',
-    redirectTo: ''
+  {
+    path: 'auth/callback',
+    component: AuthComponent
   },
-  { path: 'login',
-    redirectTo: ''
+  { path: '**',
+    redirectTo: '' // TODO: Redirect to 404 page
   },
 ];

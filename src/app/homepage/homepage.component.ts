@@ -22,7 +22,7 @@ export class HomepageComponent {
   currentUser: any;
   constructor(private authService: AuthServiceService) { }
   ngOnInit() {
-    this.currentUser = this.authService.currentUser;
+    this.currentUser = this.authService.userData;
   }
 
 
@@ -149,9 +149,11 @@ export class HomepageComponent {
   }
 
   logout(){
-    this.authService.currentUser.set(null);
-    console.log(this.authService.currentUser())
+    this.authService.logout();
   }
 
+  loginWithGoogle(){
+    this.authService.loginWithGoogle();
+  }
 
 }

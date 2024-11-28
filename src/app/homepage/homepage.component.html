@@ -2,16 +2,15 @@
 
   <!-- USER LOGIN -->
     @if (!currentUser()){
-      <div class="user-login">
+      <div class="user-login" (click)="loginWithGoogle()">
         <p>Log in with Google</p>
       </div>
     } @else {
       <!-- User info -->
       <div class="user-info">
-        <!-- <img src="{{currentUser().photoURL}}" alt="User profile picture" class="profile-picture" /> -->
-        <p>Welcome, {{currentUser().displayName}}</p>
+        <img src="{{currentUser().image}}" alt="User profile picture" class="profile-picture" />
+        <p>{{currentUser().name}}</p>
       </div>
-
       <!-- Log out button -->
       <div class="user-logout" (click)="logout()">
         <p>Log out</p>
