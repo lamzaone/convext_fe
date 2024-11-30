@@ -1,10 +1,12 @@
 <div class="navigation">
   <div class="navigation-pages">
     <!-- Navigation links -->
-    <div id="p0" routerLinkActive="active" [routerLink]="['/home']"           >Home</div>
-    <div id="p1" routerLinkActive="active" [routerLink]="['/about']"          >About</div>
-    <div id="p2" routerLinkActive="active" [routerLink]="['/contact']"        >Contact</div>
-    <div id="p3" routerLinkActive="active" [routerLink]="['/myfiles']"        >My files</div>
+    <div class="navigation-page" id="p0" routerLinkActive="active" [routerLink]="['/home']"           >Home</div>
+    <div class="navigation-page" id="p1" routerLinkActive="active" [routerLink]="['/about']"          >About</div>
+    <div class="navigation-page" id="p2" routerLinkActive="active" [routerLink]="['/contact']"        >Contact</div>
+    @if(currentUser()){
+      <div class="navigation-page" id="p3" routerLinkActive="active" [routerLink]="['/myfiles']"      >My files</div>
+    }
   </div>
 
   <div class="user">
