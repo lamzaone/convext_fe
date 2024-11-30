@@ -18,12 +18,13 @@ export class NavigationComponent {
     // Tried a few other ways using .toggle but failed to get it to work so i guess this works
     effect(() =>
         {
+          if (typeof(document) === 'undefined') return;
           if (this.userDropdown()){
             document.querySelector('.dropdown')?.classList.remove('hidden');
           }
           else {
-            document.querySelector('.dropdown')?.classList.add('hidden')
-          };
+            document.querySelector('.dropdown')?.classList.add('hidden');
+          }
         }
     );
   }
