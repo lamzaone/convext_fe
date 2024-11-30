@@ -33,12 +33,11 @@
       justify-content: center;
       align-items: center;
       border-radius: 5px;
+      cursor:pointer;
 
       & .active{
         z-index: 10;
       }
-
-      cursor:pointer;
     }
 
   }
@@ -123,4 +122,6 @@ p{
 
 }
 
-
+.active{
+  z-index: 10;
+}
