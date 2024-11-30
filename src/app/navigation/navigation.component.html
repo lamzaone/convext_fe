@@ -17,13 +17,15 @@
       </div>
     } @else {
       <!-- User info -->
-      <div class="user-info">
+      <div class="user-info" (click)="toggleDropdown()">
         <img src="{{currentUser().image}}" alt="User profile picture" class="profile-picture" />
         <p>{{currentUser().name}}</p>
       </div>
-      <!-- Log out button -->
-      <div class="user-logout" (click)="logout()">
-        <p>Log out</p>
+      <div class="dropdown hidden">
+        <!-- Dummy menu item -->
+        <div class="dropdown-item">Profile</div>
+        <!-- LOGOUT -->
+        <div class="dropdown-item" (click)="logout()">Log out</div>
       </div>
     }
   </div>
