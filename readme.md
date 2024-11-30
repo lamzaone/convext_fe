@@ -1,27 +1,33 @@
-# Convext
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.8.
+# ConvExt - FRONT END
+### Simple and effective file conversion web application using Angular 18
 
-## Development server
+Our tool offers a wide range of supported files, with quick conversion and download speeds!
+Just upload (select or drag/drop) your files, select the conversion type and let the tool do it's magic!
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+We use a variety of well known programs and frameworks that handle the conversion, so you can sit down and relax while we take care of your files without any loss of quality or file corruption.
 
-## Code scaffolding
+Additionally, we offer a paid version that allows you to access your conversion history for up to 30 days, and extends the file upload maximum size ( 20mb/file -> 50mb/file).
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+---
+## Installation:
+1. Download and install Node Package Manager
+2. Clone this repository using git
+```
+git clone https://github.com/lamzaone/convext-fe
+```
+3. Navigate into the project directory
+4. Install all dependencies using NPM
+```
+npm install
+```
+5. **Setup the [backend application](https://github.com/lamzaone/convext-be)**
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+*Warning: running this WILL NOT WORK without the backend application!*
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Running the application (development)
+ 1. Open the project folder in a terminal or CLI
+ 2. Run ```npm run start``` or ```ng serve```
+    - Optionally, you can use ```ng serve -o``` to automatically open the browser
+ 3. Navigate to ```localhost:4200/``` in your browser 
