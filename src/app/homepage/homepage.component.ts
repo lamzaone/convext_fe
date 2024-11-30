@@ -36,7 +36,10 @@ export class HomepageComponent {
       '.png': ['.jpeg', '.gif'],
       '.mp4': ['.mp3', '.wav'],
       '.mp3': ['.mp4', '.wav'],
-      '.wav': ['.mp3', '.mp4']
+      '.wav': ['.mp3', '.mp4'],
+      '.docx': ['.pdf', '.txt'],
+      '.pdf': ['.docx', '.txt'],
+      '.txt': ['.docx', '.pdf'],
     };
 
     if (ext && extensionMap[`.${ext}`]) {
@@ -148,6 +151,6 @@ export class HomepageComponent {
     this.selectedFiles.splice(0, this.selectedFiles.length);
   }
 
-  
+
 
 }
