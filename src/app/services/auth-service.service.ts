@@ -61,7 +61,7 @@ export class AuthServiceService {
       }
     } else {
       this.clearUser();
-      this.router.navigate(['/login']);
+      this.router.navigate(['/']);
     }
   }
 
