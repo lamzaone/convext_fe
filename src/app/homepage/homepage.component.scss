@@ -1,7 +1,6 @@
 
 
 
-
 .title {
   color: var(--primary-color);
 }
@@ -65,7 +64,7 @@
     }
   }
 
-  & button {
+  & button{
     background-color: var(--primary-color);
     border: none;
     color: white;
@@ -76,6 +75,35 @@
 
     &:hover {
       background-color: var(--primary-color-dark);
+    }
+
+    &#clear{
+      background-color: #444;
+    }
+  }
+}
+
+input[type="file"] {
+  font-size: 1rem;
+  color: #b8b8b8;
+  // background-color: red;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  &::placeholder {
+    color: #b8b8b8;
+  }
+
+  &::-webkit-file-upload-button {
+    background-color: #444;
+    border: none;
+    border-radius: 5px;
+    color: #b8b8b8;
+    transition: 0.3s ease-in-out all;
+
+
+    &:hover {
+      background-color: #555;
     }
   }
 }

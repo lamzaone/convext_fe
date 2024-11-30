@@ -37,7 +37,7 @@
     <!-- TODO: move inline style to scss file -->
     <div style="display:flex; flex-direction: row; gap: 10%; width: 100%; justify-content: center;">
       <button *ngIf="selectedFiles.length > 0" id="submit" (click)="uploadFiles()">Convert</button>
-      <button *ngIf="selectedFiles.length > 0" id="clear" style="background-color: var(--secondary-color);" (click)="removeFiles()">Remove all</button>
+      <button *ngIf="selectedFiles.length > 0" id="clear" (click)="removeFiles()">Remove all</button>
     </div>
   </div>
 </div>

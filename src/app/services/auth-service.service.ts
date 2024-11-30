@@ -33,7 +33,7 @@ export class AuthServiceService {
         this.setUser(response.data);
         this.cookieService.set('user_data', JSON.stringify(response.data), 7); // Set cookie with expiry
         this.cookieService.set('jwt_token', response.data.token, 7);
-        this.cookieService.set('refresh_token', response.data.refresh_token, 7);
+        this.cookieService.set('refresh_token', response.data.refresh_token, 14);
         // this.router.navigate(['/']); // Navigate to the main application
       } catch (error) {
         console.error('Token validation error:', error);
@@ -48,7 +48,7 @@ export class AuthServiceService {
             this.setUser(refreshResponse.data);
             this.cookieService.set('user_data', JSON.stringify(refreshResponse.data), 7);
             this.cookieService.set('jwt_token', refreshResponse.data.token, 7);
-            this.cookieService.set('refresh_token', refreshResponse.data.refresh_token, 7);
+            this.cookieService.set('refresh_token', refreshResponse.data.refresh_token, 14);
           } catch (refreshError) {
             console.error('Token refresh error:', refreshError);
             this.clearUser();
@@ -100,7 +100,7 @@ export class AuthServiceService {
 
   logout() {
     this.clearUser();
-    this.router.navigate(['/']); // Redirect to login
+    this.router.navigate(['/']); // Redirect to home
   }
 
   // Function to generate the Google OAuth URL
@@ -111,4 +111,5 @@ export class AuthServiceService {
     const responseType = 'token id_token';
     return `https://accounts.google.com/o/oauth2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=${responseType}&scope=${scope}`;
   }
+
 }

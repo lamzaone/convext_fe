@@ -46,11 +46,12 @@ export class AuthComponent {
             this.router.navigate(['/']);                                                    // Redirect to the main application
         } catch (error) {
             console.error('Login error:', error);
-            this.router.navigate(['/login']);
+            alert("Authentication failed. \n"+error)
+            this.router.navigate(['/']);
         }
     } else {
-        console.error('No ID token found in the URL');
-        this.router.navigate(['/login']);
+        alert("Authentication failed. No Token found")
+        this.router.navigate(['/']);
     }
   }
 
