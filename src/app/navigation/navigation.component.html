@@ -1,0 +1,28 @@
+<div class="navigation">
+  <div class="navigation-pages">
+    <!-- Navigation links -->
+    <div id="p0" routerLinkActive="active" [routerLink]="['/home']"           >Home</div>
+    <div id="p1" routerLinkActive="active" [routerLink]="['/about']"          >About</div>
+    <div id="p2" routerLinkActive="active" [routerLink]="['/contact']"        >Contact</div>
+    <div id="p3" routerLinkActive="active" [routerLink]="['/myfiles']"        >My files</div>
+  </div>
+
+  <div class="user">
+  <!-- USER LOGIN -->
+    @if (!currentUser()){
+      <div class="user-login" (click)="loginWithGoogle()">
+        <p>Log in with Google</p>
+      </div>
+    } @else {
+      <!-- User info -->
+      <div class="user-info">
+        <img src="{{currentUser().image}}" alt="User profile picture" class="profile-picture" />
+        <p>{{currentUser().name}}</p>
+      </div>
+      <!-- Log out button -->
+      <div class="user-logout" (click)="logout()">
+        <p>Log out</p>
+      </div>
+    }
+  </div>
+</div>

@@ -15,7 +15,7 @@ interface FileUpload {
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.scss'],
   standalone: true,
-  imports: [CommonModule, FormsModule]
+  imports: [CommonModule, FormsModule],
 })
 export class HomepageComponent {
   selectedFiles: FileUpload[] = [];
@@ -148,12 +148,6 @@ export class HomepageComponent {
     this.selectedFiles.splice(0, this.selectedFiles.length);
   }
 
-  logout(){
-    this.authService.logout();
-  }
-
-  loginWithGoogle(){
-    this.authService.loginWithGoogle();
-  }
+  
 
 }

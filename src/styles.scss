@@ -24,3 +24,21 @@ body{
   width: 100vw;
   font-family:Georgia, 'Times New Roman', Times, serif
 }
+
+
+.container {
+  padding: 5vh 0;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 3rem);
+  width: 100vw;
+  background-color: rgb(31, 31, 31);
+  // justify-content: center;
+  align-items: center;
+  overflow: scroll;
+  box-sizing: border-box;
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+}
