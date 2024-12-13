@@ -66,6 +66,11 @@ export class HomepageComponent {
   async uploadFiles() {
     if (this.selectedFiles.length > 0) {
       const formData = new FormData();
+      // Do not append anything with the name tokenRequest to formData for
+      // guest user. Just comment the line below. Else add token variable
+      // instead of placeholder AS STRING.
+      // Maybe we find a different way to this.
+      formData.append('tokenRequest', 'INSERT TOKEN HERE')
 
       // Append files and extensions to the FormData
       this.selectedFiles.forEach((file) => {
