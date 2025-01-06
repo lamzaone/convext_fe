@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
 import { AuthServiceService } from '../services/auth-service.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-myfiles',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './myfiles.component.html',
   styleUrls: ['./myfiles.component.scss']
 })
@@ -23,11 +24,11 @@ export class MyfilesComponent implements OnInit {
     this.fetchFiles();
   }
 
+
   // Fetch files from the backend
   fetchFiles() {
-    axios
-      .post('http://127.0.0.1:8000/myfiles', {
-        token: this.currentUser.token
+    axios.post('http://127.0.0.1:8000/myfiles', {
+        token: this.currentUser().token
       })
       .then((response) => {
         this.files = Object.entries(response.data).map(([key, value]: any) => ({
@@ -42,34 +43,37 @@ export class MyfilesComponent implements OnInit {
       });
   }
 
-  // Download a file
   downloadFile(fileName: string) {
     axios
       .post(
         'http://127.0.0.1:8000/myfiles/download',
-        { filename: fileName, token: this.currentUser.token },
-        { responseType: 'blob' }
+        {
+          tokenRequest: { token: this.currentUser().token }, // Properly structured tokenRequest
+          fileNameModel: { filename: fileName }, // Correct object format for fileNameModel
+        },
+        { responseType: 'blob' } // To handle file downloads
       )
       .then((response) => {
         const url = window.URL.createObjectURL(new Blob([response.data]));
         const link = document.createElement('a');
         link.href = url;
-        link.setAttribute('download', fileName);
+        link.setAttribute('download', fileName); // Set filename for download
         document.body.appendChild(link);
         link.click();
         link.remove();
       })
       .catch((error) => {
-        console.error('Error downloading file:', error);
+        console.error('Error downloading file:', error.response?.data || error);
       });
   }
+
 
   // Toggle file sharing
   toggleShare(fileName: string) {
     axios
       .post('http://127.0.0.1:8000/myfiles/share', {
-        filename: fileName,
-        token: this.currentUser.token
+        tokenRequest: { token: this.currentUser().token }, // Correct structure for token
+        fileNameModel: { filename: fileName }, // Correct structure for filename
       })
       .then((response) => {
         const message = response.data.message;
@@ -81,23 +85,24 @@ export class MyfilesComponent implements OnInit {
         this.fetchFiles(); // Refresh the file list
       })
       .catch((error) => {
-        console.error('Error toggling share:', error);
+        console.error('Error toggling share:', error.response?.data || error);
       });
   }
+
 
   // Delete a file (backend needs a delete endpoint)
   deleteFile(fileName: string) {
     axios
       .post('http://127.0.0.1:8000/myfiles/delete', {
-        filename: fileName,
-        token: this.currentUser.token
+        tokenRequest: { token: this.currentUser().token }, // Correct structure for token
+        fileNameModel: { filename: fileName }, // Correct structure for filename
       })
       .then(() => {
         alert('File deleted successfully!');
         this.fetchFiles(); // Refresh the file list
       })
       .catch((error) => {
-        console.error('Error deleting file:', error);
+        console.error('Error deleting file:', error.response?.data || error);
       });
   }
 }
