@@ -65,6 +65,9 @@ export class HomepageComponent {
     async uploadFiles() {
       if (this.selectedFiles.length > 0) {
         const formData = new FormData();
+        if (!(this.currentUser() === null)) {
+          formData.append('tokenRequest', this.currentUser().token);
+        }
 
         // Append files and extensions to the FormData
         this.selectedFiles.forEach((file) => {
@@ -82,6 +85,7 @@ export class HomepageComponent {
           const ext = file.selectedExtension;
           formData.append('extensions', ext);
         });
+
 
         try {
           // Remove all "remove-button" elements

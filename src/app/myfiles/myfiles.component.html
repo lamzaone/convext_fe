@@ -1,2 +1,25 @@
 <div class="container">
+  <div class="files_list">
+    <h2>My Files</h2>
+    <ul *ngIf="files.length > 0; else noFiles">
+      <li *ngFor="let file of files" class="file-item">
+        <div class="file-details">
+          <span><strong>Name:</strong> {{ file.name }}</span>
+          <span><strong>Size:</strong> {{ file.size }} bytes</span>
+          <span><strong>Date:</strong> {{ file.date }}</span>
+          <span><strong>Shareable:</strong> {{ file.shareable ? 'Yes' : 'No' }}</span>
+        </div>
+        <div class="file-actions">
+          <button (click)="downloadFile(file.name)">Download</button>
+          <button (click)="toggleShare(file.name)">
+            {{ file.shareable ? 'Unshare' : 'Share' }}
+          </button>
+          <button (click)="deleteFile(file.name)">Delete</button>
+        </div>
+      </li>
+    </ul>
+    <ng-template #noFiles>
+      <p>No files found.</p>
+    </ng-template>
+  </div>
 </div>
