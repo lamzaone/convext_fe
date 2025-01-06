@@ -35,7 +35,8 @@ export class MyfilesComponent implements OnInit {
           name: key,
           size: value.size,
           date: new Date(value.date * 1000).toLocaleString(),
-          shareable: value.share
+          shareable: value.share,
+          link: value.link
         }));
       })
       .catch((error) => {
@@ -78,7 +79,7 @@ export class MyfilesComponent implements OnInit {
       .then((response) => {
         const message = response.data.message;
         if (typeof message === 'string') {
-          alert(`File shared! Encrypted path: ${message}`);
+          alert(`File shared successfully!`);
         } else {
           alert('File sharing toggled off.');
         }

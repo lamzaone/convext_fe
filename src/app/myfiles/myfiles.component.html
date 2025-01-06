@@ -7,7 +7,11 @@
           <span><strong>Name:</strong> {{ file.name }}</span>
           <span><strong>Size:</strong> {{ file.size }} bytes</span>
           <span><strong>Date:</strong> {{ file.date }}</span>
-          <span><strong>Shareable:</strong> {{ file.shareable ? 'Yes' : 'No' }}</span>
+          <span><strong>Shared:</strong> {{ file.shareable ? 'Yes' : 'No' }}</span>
+            <span *ngIf="file.shareable">
+            <strong>Download link: </strong>
+            <a [href]="file.link" target="_blank">{{ file.link | slice:0:30 }}...</a>
+            </span>
         </div>
         <div class="file-actions">
           <button (click)="downloadFile(file.name)">Download</button>
