@@ -9,8 +9,8 @@
           <span><strong>Date:</strong> {{ file.date }}</span>
           <span><strong>Shared:</strong> {{ file.shareable ? 'Yes' : 'No' }}</span>
             <span *ngIf="file.shareable">
-            <strong>Download link: </strong>
-            <a [href]="file.link" target="_blank">{{ file.link | slice:0:30 }}...</a>
+            <strong>Download: </strong>
+            <a [href]="file.link" target="_blank">{{ file.link | slice:7:30 }}...</a>
             </span>
         </div>
         <div class="file-actions">
