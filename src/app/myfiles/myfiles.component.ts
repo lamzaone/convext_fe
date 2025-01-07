@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
 import { AuthServiceService } from '../services/auth-service.service';
 import { CommonModule } from '@angular/common';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-myfiles',
@@ -11,14 +12,16 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./myfiles.component.scss']
 })
 export class MyfilesComponent implements OnInit {
-  currentUser: any;
+  token: any;
   files: any[] = []; // Array to store file data
 
-  constructor(private authService: AuthServiceService) {}
+  constructor(private authService: AuthServiceService,
+              private cookieService: CookieService
+  ) {}
 
   ngOnInit() {
     // Simulate fetching user data
-    this.currentUser = this.authService.userData;
+    this.token = this.cookieService.get('jwt_token');
 
     // Fetch the files list on initialization
     this.fetchFiles();
