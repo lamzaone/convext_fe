@@ -82,14 +82,15 @@ export class MyfilesComponent implements OnInit {
       .then((response) => {
         const message = response.data.message;
         if (typeof message === 'string') {
-          alert(`File shared successfully!`);
+          // alert(`File shared successfully!`);
         } else {
-          alert('File sharing toggled off.');
+          // alert('File sharing toggled off.');
         }
         this.fetchFiles(); // Refresh the file list
       })
       .catch((error) => {
         console.error('Error toggling share:', error.response?.data || error);
+        alert('Error toggling share, please check developer console for more info.');
       });
   }
 
@@ -102,11 +103,12 @@ export class MyfilesComponent implements OnInit {
         fileNameModel: { filename: fileName }, // Correct structure for filename
       })
       .then(() => {
-        alert('File deleted successfully!');
+        // alert('File deleted successfully!');
         this.fetchFiles(); // Refresh the file list
       })
       .catch((error) => {
         console.error('Error deleting file:', error.response?.data || error);
+        alert('Error deleting file, please check developer console for more info.');
       });
   }
 }
