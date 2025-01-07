@@ -1,11 +1,17 @@
-.files_list {
+.files_list{
   width: 80%;
   margin: auto;
   padding: 20px;
   background-color: rgb(24, 24, 24);
   border-radius: 8px;
-  color: #f9f9f9;
+  color: #b8b8b8;
   gap: 10px;
+  min-width: 490px;
+
+  & h2 {
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #ccc;
+  }
 }
 
 .file-item {
@@ -13,6 +19,15 @@
   justify-content: space-between;
   padding: 10px;
   border-bottom: 1px solid #ccc;
+}
+
+.file-item:last-child {
+  border-bottom: none;
+}
+
+
+strong{
+  color: var(--primary-color);
 }
 
 
