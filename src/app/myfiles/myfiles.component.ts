@@ -31,7 +31,7 @@ export class MyfilesComponent implements OnInit {
   // Fetch files from the backend
   fetchFiles() {
     axios.post('http://127.0.0.1:8000/myfiles', {
-        token: this.currentUser().token
+        token: this.token
       })
       .then((response) => {
         this.files = Object.entries(response.data).map(([key, value]: any) => ({
@@ -52,7 +52,7 @@ export class MyfilesComponent implements OnInit {
       .post(
         'http://127.0.0.1:8000/myfiles/download',
         {
-          tokenRequest: { token: this.currentUser().token }, // Properly structured tokenRequest
+          tokenRequest: { token: this.token }, // Properly structured tokenRequest
           fileNameModel: { filename: fileName }, // Correct object format for fileNameModel
         },
         { responseType: 'blob' } // To handle file downloads
@@ -76,7 +76,7 @@ export class MyfilesComponent implements OnInit {
   toggleShare(fileName: string) {
     axios
       .post('http://127.0.0.1:8000/myfiles/share', {
-        tokenRequest: { token: this.currentUser().token }, // Correct structure for token
+        tokenRequest: { token: this.token }, // Correct structure for token
         fileNameModel: { filename: fileName }, // Correct structure for filename
       })
       .then((response) => {
@@ -98,7 +98,7 @@ export class MyfilesComponent implements OnInit {
   deleteFile(fileName: string) {
     axios
       .post('http://127.0.0.1:8000/myfiles/delete', {
-        tokenRequest: { token: this.currentUser().token }, // Correct structure for token
+        tokenRequest: { token: this.token }, // Correct structure for token
         fileNameModel: { filename: fileName }, // Correct structure for filename
       })
       .then(() => {
