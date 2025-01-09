@@ -56,3 +56,29 @@ button {
 button:hover {
   background-color: var(--primary-color-dark);
 }
+
+
+// for screens less than 600px
+@media screen and (max-width: 800px) {
+  .files_list {
+    width: 90%;
+    min-width: 0;
+    padding: 20px;
+  }
+  .file-actions {
+    flex-direction: column;
+    margin-left: 10px;
+  }
+}
+
+@media screen and (max-width: 400px){
+  .file-item{
+    flex-direction: column;
+    gap: 10px;
+  }
+  .file-actions {
+    flex-direction: column;
+    width: 200px;
+    margin: auto;
+  }
+}

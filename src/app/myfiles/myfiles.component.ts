@@ -43,7 +43,7 @@ export class MyfilesComponent implements OnInit {
         }));
       })
       .catch((error) => {
-        console.error('Error fetching files:', error);
+        // console.error('Error fetching files:', error);
       });
   }
 

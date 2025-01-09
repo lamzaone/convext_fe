@@ -28,7 +28,7 @@
     &.active{
       transition: 0.3s ease-in-out all;
       z-index: 10;
-      border-bottom: 1px solid var(--primary-color-dark);
+      border-bottom: 1px solid var(--primary-color);
     }
 
     &:hover{
