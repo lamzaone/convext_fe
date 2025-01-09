@@ -19,11 +19,9 @@ export class MyfilesComponent implements OnInit {
   constructor(private authService: AuthServiceService,
               private cookieService: CookieService,
               private router: Router
-  ) {}
+  ) {this.token = this.authService.getUser().token;}
 
   ngOnInit() {
-    // Simulate fetching user data
-    this.token = this.cookieService.get('jwt_token');
     if (this.token === '') {
       this.router.navigate(['/home']);
       return;
