@@ -3,6 +3,7 @@ import axios from 'axios';
 import { AuthServiceService } from '../services/auth-service.service';
 import { CommonModule } from '@angular/common';
 import { CookieService } from 'ngx-cookie-service';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-myfiles',
@@ -16,12 +17,18 @@ export class MyfilesComponent implements OnInit {
   files: any[] = []; // Array to store file data
 
   constructor(private authService: AuthServiceService,
-              private cookieService: CookieService
+              private cookieService: CookieService,
+              private router: Router
   ) {}
 
   ngOnInit() {
     // Simulate fetching user data
     this.token = this.cookieService.get('jwt_token');
+    if (this.token === '') {
+      this.router.navigate(['/home']);
+      return;
+    }
+
 
     // Fetch the files list on initialization
     this.fetchFiles();
@@ -43,7 +50,7 @@ export class MyfilesComponent implements OnInit {
         }));
       })
       .catch((error) => {
-        console.error('Error fetching files:', error);
+        // console.error('Error fetching files:', error);
       });
   }
 

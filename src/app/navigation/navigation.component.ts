@@ -14,20 +14,42 @@ export class NavigationComponent {
   userDropdown = signal(false);
 
   constructor(private authService: AuthServiceService) {
-    // Effect to change the visibility of the dropdown on userDropdown signal change
-    // Tried a few other ways using .toggle but failed to get it to work so i guess this works
-    effect(() =>
-        {
-          if (typeof(document) === 'undefined') return;
-          if (this.userDropdown()){
-            document.querySelector('.dropdown')?.classList.remove('hidden');
+    let handleClickOutside: (event: Event) => void;
+
+    effect(() => {
+      if (typeof document === 'undefined') return;
+
+      const dropdown = document.querySelector('.dropdown') as HTMLElement | null;
+      const userinfo = document.querySelector('.user-info') as HTMLElement | null;
+
+      if (this.userDropdown() && dropdown && userinfo) {
+        // Set height to match dropdown items count (2rem per item)
+        dropdown.style.height = `${2 * document.querySelectorAll('.dropdown-item').length}rem`;
+
+        // Define the event listener if not already defined
+        handleClickOutside = handleClickOutside || ((event: Event) => {
+          if (
+            !dropdown.contains(event.target as Node) &&
+            !userinfo.contains(event.target as Node)
+          ) {
+            this.userDropdown.set(false);
           }
-          else {
-            document.querySelector('.dropdown')?.classList.add('hidden');
-          }
+        });
+
+        // Add the event listener
+        document.addEventListener('click', handleClickOutside);
+      } else if (dropdown) {
+        // Set height to 0 to hide the dropdown
+        dropdown.style.height = '0rem';
+
+        // Remove the event listener
+        if (handleClickOutside) {
+          document.removeEventListener('click', handleClickOutside);
         }
-    );
+      }
+    });
   }
+
 
   ngOnInit() {
     this.currentUser = this.authService.userData;
