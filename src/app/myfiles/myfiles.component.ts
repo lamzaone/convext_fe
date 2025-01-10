@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
 import { AuthServiceService } from '../services/auth-service.service';
 import { CommonModule } from '@angular/common';
-import { CookieService } from 'ngx-cookie-service';
 import { Router} from '@angular/router';
 
 @Component({
@@ -16,19 +15,20 @@ export class MyfilesComponent implements OnInit {
   token: any;
   files: any[] = []; // Array to store file data
 
-  constructor(private authService: AuthServiceService,
-              private cookieService: CookieService,
-              private router: Router
-  ) {this.token = this.authService.getUser().token;}
-
-  ngOnInit() {
-    if (this.token === '') {
-      this.router.navigate(['/home']);
-      return;
+  constructor(
+    private authService: AuthServiceService,
+    private router: Router
+  ) {
+      try {
+        this.token = this.authService.getUser().token;
+      } catch (error) {
+          this.token = '';
+          this.router.navigate(['/home']);
+          return;
+      }
     }
 
-
-    // Fetch the files list on initialization
+  ngOnInit() {
     this.fetchFiles();
   }
 

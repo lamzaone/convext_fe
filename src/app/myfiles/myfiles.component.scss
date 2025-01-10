@@ -25,6 +25,11 @@
   border-bottom: none;
 }
 
+a{
+  color: inherit;
+  text-decoration: underline;
+  font-weight: 1000;
+}
 
 strong{
   color: var(--primary-color);
