@@ -49,6 +49,13 @@ li {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 20rem;
   max-width: 350px;
+  transition: 0.3s ease-in-out all;
+
+
+  &:hover{
+    transform: scale(1.02);
+    background-color: #30303042;
+  }
 }
 
 a {
