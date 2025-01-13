@@ -13,6 +13,7 @@ h1 {
 
 h2 {
   color: var(--primary-color);
+  font-size: 1.5rem;
   padding-bottom: 0;
   margin: 0;
 }
@@ -22,22 +23,43 @@ p {
   display: flex;
   flex-direction: col;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 1.75rem;
+  // gap: 10px;
+  // margin-bottom: 1.75rem;
 }
 
 ul {
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
   padding-left: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  flex-wrap: wrap;
 }
 
 li {
   list-style: none;
   display: flex;
-  flex-direction: col;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   margin-top: 5px;
-  text-align: center;
+  text-align: left;
+  padding: 1.5rem;
+  border: 1px solid var(--primary-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 350px;
+}
+
+li ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+li ul li {
+  margin: 0;
 }
 
 a {
@@ -59,3 +81,19 @@ a:hover {
 .social-links a {
   font-size: 1.5rem;
 }
+
+strong {
+  font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+  ul {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  li {
+    width: 100%;
+  }
+}
+
