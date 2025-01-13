@@ -1,5 +1,5 @@
 .container {
-  align-items: start;
+  // align-items: start;
   padding: 2rem;
   padding-top: 6.5rem;
 }
@@ -47,19 +47,8 @@ li {
   border: 1px solid var(--primary-color);
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 100%;
+  width: 20rem;
   max-width: 350px;
-}
-
-li ul {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-li ul li {
-  margin: 0;
 }
 
 a {
