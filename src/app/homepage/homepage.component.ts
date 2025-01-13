@@ -30,16 +30,41 @@ export class HomepageComponent {
       const ext = fileName.split('.').pop()?.toLowerCase();
 
       const extensionMap: { [key: string]: string[] } = {
-        '.jpg': ['.png', '.gif'],
-        '.jpeg': ['.png', '.gif'],
-        '.png': ['.jpeg', '.gif'],
-        '.mp4': ['.mp3', '.wav'],
-        '.mp3': ['.mp4', '.wav'],
-        '.wav': ['.mp3', '.mp4'],
-        '.docx': ['.pdf', '.txt'],
-        '.pdf': ['.docx', '.txt'],
-        '.txt': ['.docx', '.pdf'],
+        // Image formats
+        '.jpg': ['.jpeg', '.png', '.gif', '.webp'],
+        '.jpeg': ['.jpg', '.png', '.gif', '.webp'],
+        '.png': ['.jpg', '.jpeg', '.gif', '.webp'],
+        '.gif': ['.jpg', '.jpeg', '.png', '.webp'],
+        '.webp': ['.jpg', '.jpeg', '.png', '.gif'],
+
+        // Video formats
+        '.mp4': ['.webm', '.avi', '.mov', '.mkv'],
+        '.webm': ['.mp4', '.avi', '.mov', '.mkv'],
+        '.avi': ['.mp4', '.webm', '.mov', '.mkv'],
+        '.mov': ['.mp4', '.webm', '.avi', '.mkv'],
+        '.mkv': ['.mp4', '.webm', '.avi', '.mov'],
+
+        // Audio formats
+        '.mp3': ['.wav', '.ogg', '.flac', '.aac'],
+        '.wav': ['.mp3', '.ogg', '.flac', '.aac'],
+        '.ogg': ['.mp3', '.wav', '.flac', '.aac'],
+        '.flac': ['.mp3', '.wav', '.ogg', '.aac'],
+        '.aac': ['.mp3', '.wav', '.ogg', '.flac'],
+
+        // Document formats
+        '.docx': ['.pdf', '.txt', '.doc'],
+        '.doc': ['.docx', '.pdf', '.txt'],
+        // '.pdf': ['.docx', '.txt', '.doc'],
+        '.txt': ['.docx', '.pdf', '.doc'],
+
+        // Compressed formats
+        '.zip': ['.tar', '.gz', '.7z', '.rar'],
+        '.tar': ['.zip', '.gz', '.7z', '.rar'],
+        '.gz': ['.zip', '.tar', '.7z', '.rar'],
+        '.7z': ['.zip', '.tar', '.gz', '.rar'],
+        '.rar': ['.zip', '.tar', '.gz', '.7z'],
       };
+
 
       if (ext && extensionMap[`.${ext}`]) {
         return extensionMap[`.${ext}`];
