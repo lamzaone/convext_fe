@@ -31,11 +31,11 @@ export class HomepageComponent {
 
       const extensionMap: { [key: string]: string[] } = {
         // Image formats
-        '.jpg': ['.jpeg', '.png', '.gif', '.webp'],
-        '.jpeg': ['.jpg', '.png', '.gif', '.webp'],
-        '.png': ['.jpg', '.jpeg', '.gif', '.webp'],
-        '.gif': ['.jpg', '.jpeg', '.png', '.webp'],
-        '.webp': ['.jpg', '.jpeg', '.png', '.gif'],
+        '.jpg': ['.png', '.gif', '.webp'],
+        '.jpeg': ['.png', '.gif', '.webp'],
+        '.png': ['.jpg', '.gif', '.webp'],
+        '.gif': ['.jpg', '.png', '.webp'],
+        '.webp': ['.jpg', '.png', '.gif'],
 
         // Video formats
         '.mp4': ['.webm', '.avi', '.mov', '.mkv'],
@@ -54,15 +54,17 @@ export class HomepageComponent {
         // Document formats
         '.docx': ['.pdf', '.txt', '.doc'],
         '.doc': ['.docx', '.pdf', '.txt'],
-        // '.pdf': ['.docx', '.txt', '.doc'],
+        '.pdf': ['.docx', '.txt', '.doc'],
         '.txt': ['.docx', '.pdf', '.doc'],
 
         // Compressed formats
+        /*
         '.zip': ['.tar', '.gz', '.7z', '.rar'],
         '.tar': ['.zip', '.gz', '.7z', '.rar'],
         '.gz': ['.zip', '.tar', '.7z', '.rar'],
         '.7z': ['.zip', '.tar', '.gz', '.rar'],
         '.rar': ['.zip', '.tar', '.gz', '.7z'],
+        */
       };
 
 
